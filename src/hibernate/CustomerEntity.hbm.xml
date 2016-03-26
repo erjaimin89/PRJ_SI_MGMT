@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="hibernate.CustomerEntity" table="CUSTOMER">
+  <meta attribute="description">This class is used to save the info about customers</meta>
+  <id column="ID" name="customerId" type="long">
+  	<generator class="increment"/>
+  </id>
+  <property column="CUSTOMER_NAME" name="customerName" type="string"/>
+  <property column="COMPANY_NAME"  name="companyName" type="string"/>
+  <property column="BALANCE" name="balance" type="big_decimal" scale="15" precision="2"/>
+  <property column="ADDRESS" name="address" type="string"/>
+  <property column="PHONE" name="phone" type="string"/>
+  <property column="FAX" name="fax" type="string"/>
+  <property column="EMAIL" name="email" type="string"/>
+  <property column="ACTIVE" name="active" type="boolean"/>
+  <property column="CREATED_ON" name="createdOn" type="long"/>
+  <property column="UPDATED_ON" name="updatedOn" type="long"/>
+  <property column="REMARKS" name="remarks" type="string"/>
+ </class>
+</hibernate-mapping>

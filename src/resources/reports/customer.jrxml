@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-03-26T16:18:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="customer" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="727e0e33-1267-48cf-8fa0-2d63a79d153d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="serverDB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="whereClause" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select sims.CUSTOMER.`ID`,  
+       sims.CUSTOMER.`CUSTOMER_NAME`, 
+	   sum(sims.SALES_ORDERS.`REMAINING_BALANCE`)
+from sims.CUSTOMER  left join sims.SALES_ORDERS  on sims.CUSTOMER.`ID` = sims.SALES_ORDERS.`CUSTOMER_ID`
+WHERE $P!{whereClause} 
+group by sims.CUSTOMER.`ID`  HAVING sum(sims.SALES_ORDERS.`REMAINING_BALANCE`) > 0
+order by sims.CUSTOMER.`CUSTOMER_NAME`]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUSTOMER_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sum(sims.SALES_ORDERS.`REMAINING_BALANCE`)" class="java.math.BigDecimal"/>
+	<variable name="ttlBalance" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{sum(sims.SALES_ORDERS.`REMAINING_BALANCE`)}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="31" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="550" height="30" backcolor="#EAEAEA" uuid="d58c0bbd-874d-4057-9aa4-628f001052f8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="185" y="0" width="200" height="30" uuid="de231666-5649-473f-a37b-f474f34d7898"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Balance Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41">
+			<staticText>
+				<reportElement x="440" y="10" width="50" height="20" uuid="cdc84534-ae70-4c0b-8bab-6960ea716b03"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="490" y="10" width="60" height="20" uuid="242d2e17-96fe-472a-b364-6a946c496527"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" "+new SimpleDateFormat("YYYY/MM/dd").format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="150" y="12" width="130" height="30" uuid="95abe881-ad99-430b-9389-535cad8640c3"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ CUSTOMER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="12" width="130" height="30" uuid="0a0f0089-87df-4e8a-aafd-dbc077e5ded6"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BALANCE ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="150" y="0" width="130" height="20" uuid="5972262d-144d-498d-83e3-4239c4bc7146"/>
+				<box>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["  "+$F{CUSTOMER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="280" y="0" width="130" height="20" uuid="742ae968-068c-448b-bac2-cac5eabd01bf"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{sum(sims.SALES_ORDERS.`REMAINING_BALANCE`)} != null)?NumberFormat.getCurrencyInstance().format($F{sum(sims.SALES_ORDERS.`REMAINING_BALANCE`)})+" ":NumberFormat.getCurrencyInstance().format(new BigDecimal("0.00"))+" "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19">
+			<textField>
+				<reportElement x="355" y="0" width="100" height="19" uuid="9dac4156-8a14-4039-b699-5cbde8a070fc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="455" y="0" width="100" height="19" uuid="06c18e9e-f966-4e9c-b9a0-4eb755e751a3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="68">
+			<rectangle>
+				<reportElement x="2" y="30" width="550" height="30" backcolor="#EAEAEA" uuid="c8f513be-9883-4880-ac34-1efaf0aa8cbf"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="181" y="30" width="200" height="30" uuid="135b2e58-4c38-4328-a3f8-33b1c943da22"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[End of Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="0" width="130" height="30" uuid="261e047f-0e8e-400e-bee5-51ecf5107016"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Balance:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="0" width="130" height="30" uuid="ac14f11f-6e40-489a-8933-7dd0da9ab730"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getCurrencyInstance().format($V{ttlBalance})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

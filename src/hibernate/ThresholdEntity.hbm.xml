@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="hibernate.ThresholdDetailEntity" table="THRESHOLD_DETAIL">
+  		<meta attribute="description">This class is used to save the info about purchase orders</meta>
+  		<id column="ID" name="thresholdId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="PARTY_ID" name="partyId" type="long"/>  
+  		<property column="PARTY_NAME" name="partyName" type="string"/>
+  		<property column="ITEM_ID" name="itemId" type="long"/>  
+  		<property column="ITEM_NAME" name="itemName" type="string"/>
+  		<property column="ITEM_DETAIL_ID" name="itemDetailId" type="long"/>
+  		<property column="ITEM_DETAIL_NAME"  name="detailName" type="string"/>
+  		<property column="THRESHOLD_SIZE_1"  name="xsmallThreshold" type="integer"/>
+  		<property column="THRESHOLD_SIZE_2" name="smallThreshold" type="integer"/>
+  		<property column="THRESHOLD_SIZE_3" name="mediumThreshold" type="integer"/>
+  		<property column="THRESHOLD_SIZE_4"  name="largeThreshold" type="integer"/>
+  		<property column="THRESHOLD_SIZE_5" name="xlargeThreshold" type="integer"/>
+  		<property column="THRESHOLD_SIZE_6" name="xxlargeThreshold" type="integer"/>
+  		<property column="THRESHOLD_SIZE_7"  name="xxxlargeThreshold" type="integer"/>
+  		<property column="THRESHOLD_SIZE_8" name="mixThreshold" type="integer"/>
+  		<property column="TARGET_SIZE_1"  name="xsmallTarget" type="integer"/>
+  		<property column="TARGET_SIZE_2" name="smallTarget" type="integer"/>
+  		<property column="TARGET_SIZE_3" name="mediumTarget" type="integer"/>
+  		<property column="TARGET_SIZE_4"  name="largeTarget" type="integer"/>
+  		<property column="TARGET_SIZE_5" name="xlargeTarget" type="integer"/>
+  		<property column="TARGET_SIZE_6" name="xxlargeTarget" type="integer"/>
+  		<property column="TARGET_SIZE_7"  name="xxxlargeTarget" type="integer"/>
+  		<property column="TARGET_SIZE_8" name="mixTarget" type="integer"/>
+        <property column="ORDER_DATE" name="orderDate" type="long"/>
+  	    <property column="UPDATED_ON" name="updatedOn" type="long"/>
+ 	</class>
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="hibernate.InvoiceDetailsEntity" table="INVOICE_DETAILS">
+  <meta attribute="description">This class is used to save the info about users</meta>
+  <id column="ID" name="detailId" type="long">
+  	<generator class="increment"/>
+  </id>
+  <property column="TEXT" name="text" type="string"/>
+  <property column="TYPE" name="type" type="integer"/>
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://192.168.2.22:3306/sims</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.password">system</property>
+  <property name="hibernate.show_sql">false</property>
+  <property name="connection.autoReconnect">true</property>
+  <property name="connection.autoReconnectForPools">true</property>
+  <property name="connection.is-connection-validation-required">true</property>
+  
+  
+  <mapping resource="hibernate/CustomerEntity.hbm.xml"/>
+  <mapping resource="hibernate/ItemEntity.hbm.xml"/>
+  <mapping resource="hibernate/UserEntity.hbm.xml"/>
+  <mapping resource="hibernate/TaxEntity.hbm.xml"/>
+  <mapping resource="hibernate/SalesOrderEntity.hbm.xml"/>
+  <mapping resource="hibernate/InvoiceDetailEntity.hbm.xml"/>
+  <mapping resource="hibernate/PurchaseOrderEntity.hbm.xml"/>
+  <mapping resource="hibernate/ThresholdEntity.hbm.xml"/>
+  <mapping resource="hibernate/BackUpOrderEntity.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

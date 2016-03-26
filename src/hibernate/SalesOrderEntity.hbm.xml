@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="hibernate.SalesOrderEntity" table="SALES_ORDERS">
+  		<meta attribute="description">This class is used to save the info about sales orders</meta>
+  		<id column="ID" name="salesOrderId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="PRICE_TOTAL" name="orderTotal" type="big_decimal"/>
+  		<property column="DISCOUNT" name="discount" type="big_decimal"/>
+  		<property column="ORDER_SUBTOTAL" name="subTotal" type="big_decimal"/>
+  		<property column="ORDER_TOTAL"  name="total" type="big_decimal"/>
+  		<property column="SHIPPING_STATUS" name="shippingStatus" type="integer"/>
+  		<property column="INVOICE_STATUS" name="invoiceStatus" type="integer"/>
+  		<property column="PAYMENT_STATUS"  name="paymentStatus" type="integer"/>
+        <property column="TAX_AMOUNT_1" name="taxAmount1" type="big_decimal"/>
+  		<property column="TAX_AMOUNT_2"  name="taxAmount2" type="big_decimal"/>
+        <property column="PAID_AMOUNT" name="paidAmount" type="big_decimal"/>
+  	    <property column="REMAINING_BALANCE"  name="remainingBalance" type="big_decimal"/>
+        <property column="REMARKS" name="remarks" type="string"/>
+        <property column="CONDITIONS" name="conditions" type="string"/>
+        <property column="VIA" name="via" type="string"/>
+        <property column="REF_NO" name="refNo" type="string"/>
+        <property column="ORDER_DATE" name="orderDate" type="long"/>
+         <property column="SHIPPING_DATE" name="shippingDate" type="long"/>
+  	    <property column="UPDATED_ON" name="updatedOn" type="long"/>
+  		<many-to-one name="user" class="hibernate.UserEntity" column="USER_ID" unique="true" lazy="false"/>
+        <many-to-one name="taxingScheme" class="hibernate.TaxEntity" column="TAX_ID" unique="true" lazy="false"/>
+        <many-to-one name="customer" class="hibernate.CustomerEntity" column="CUSTOMER_ID" unique="true" cascade="save-update" lazy="false"/>
+        <many-to-one name="invoice"  class="hibernate.InvoiceEntity" column="INVOICE_ID" unique="true" lazy="false" cascade="all"/>
+  		<set name="orderDetails" cascade="all" lazy="false" sort="natural">
+        	 <key column="SALES_ORDER_ID"/>
+	         <one-to-many class="hibernate.SalesOrderDetailEntity"/>
+        </set>
+        <set name="paymentDetails" cascade="all" lazy="false" sort="natural">
+        	 <key column="ORDER_ID"/>
+	         <one-to-many class="hibernate.PaymentEntity"/>
+        </set>
+ 	</class>
+	<class name="hibernate.SalesOrderDetailEntity" table="SALES_ORDERS_DETAILS">
+  		<meta attribute="description">
+  			This class is used to save the details about sales order
+  		</meta>
+   		<id column="ID" name="orderDetailId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="PARTY_ID" name="partyId" type="long"/>  
+  		<property column="PARTY_NAME" name="partyName" type="string"/>
+  		<property column="ITEM_ID" name="itemId" type="long"/>  
+  		<property column="ITEM_NAME" name="itemName" type="string"/>
+  		<property column="ITEM_DETAIL_ID" name="itemDetailId" type="long"/>
+  		<property column="ITEM_DETAIL_NAME"  name="detailName" type="string"/>
+  		<property column="SIZE_1"  name="xsmall" type="integer"/>
+  		<property column="SIZE_2" name="small" type="integer"/>
+  		<property column="SIZE_3" name="medium" type="integer"/>
+  		<property column="SIZE_4"  name="large" type="integer"/>
+  		<property column="SIZE_5" name="xlarge" type="integer"/>
+  		<property column="SIZE_6" name="xxlarge" type="integer"/>
+  		<property column="SIZE_7"  name="xxxlarge" type="integer"/>
+  		<property column="SIZE_8" name="mix" type="integer"/>
+  		<property column="TOTAL_QUANTITY" name="totalQuantity" type="integer"/>
+  		<property column="UNIT_PRICE" name="unitPrice" type="big_decimal"/>
+  		<property column="SUB_TOTAL" name="subTotal" type="big_decimal"/>
+ 	</class>
+ 	<class name="hibernate.PaymentEntity" table="PAYMENT_DETAILS">
+  		<meta attribute="description">
+  			This class is used to save the payment details about sales order
+  		</meta>
+   		<id column="ID" name="paymentId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="AMOUNT" name="amount" type="big_decimal"/>
+		<property column="TYPE" name="type" type="integer"/>  	
+  		<property column="PAYMENT_DATE" name="paymentDate" type="long"/>
+ 	</class>
+ 	<class name="hibernate.InvoiceEntity" table="INVOICES">
+  		<meta attribute="description">
+  			This class is used to save the invoices
+  		</meta>
+   		<id column="ID" name="invoiceId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="INVOICE_DATE" name="invoiceDate" type="long"/>
+  		<property column="INVOICE" name="invoice" type="blob"/>
+ 	</class>
+</hibernate-mapping>

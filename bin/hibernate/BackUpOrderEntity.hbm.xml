@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="hibernate.BackUpOrderEntity" table="BACKUP_ORDERS">
+  		<meta attribute="description">This class is used to save the info about back up orders</meta>
+  		<id column="ID" name="backUpOrderId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="TOTAL_ITEM_QUANTITY" name="totalItemQuantity" type="integer"/>
+  		<property column="ARRIVAL_DATE" name="arrivalDate" type="long"/>
+  		<property column="SHIPPING_STATUS" name="shippingStatus" type="integer"/>
+        <property column="ORDER_DATE" name="orderDate" type="long"/>
+  	    <property column="UPDATED_ON" name="updatedOn" type="long"/>
+  	     <property column="REMARKS" name="remarks" type="string"/>
+  		<set name="orderDetails" cascade="all" lazy="false">
+        	 <key column="BACKUP_ORDER_ID"/>
+	         <one-to-many class="hibernate.BackUpOrderDetailEntity"/>
+        </set>
+ 	</class>
+	<class name="hibernate.BackUpOrderDetailEntity" table="BACKUP_ORDERS_DETAILS">
+  		<meta attribute="description">
+  			This class is used to save the details about back up order
+  		</meta>
+   		<id column="ID" name="orderDetailId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="PARTY_ID" name="partyId" type="long"/>  
+  		<property column="PARTY_NAME" name="partyName" type="string"/>
+  		<property column="ITEM_ID" name="itemId" type="long"/>  
+  		<property column="ITEM_NAME" name="itemName" type="string"/>
+  		<property column="ITEM_DETAIL_ID" name="itemDetailId" type="long"/>
+  		<property column="ITEM_DETAIL_NAME"  name="detailName" type="string"/>
+  		<property column="SIZE_1"  name="xsmall" type="integer"/>
+  		<property column="SIZE_2" name="small" type="integer"/>
+  		<property column="SIZE_3" name="medium" type="integer"/>
+  		<property column="SIZE_4"  name="large" type="integer"/>
+  		<property column="SIZE_5" name="xlarge" type="integer"/>
+  		<property column="SIZE_6" name="xxlarge" type="integer"/>
+  		<property column="SIZE_7"  name="xxxlarge" type="integer"/>
+  		<property column="SIZE_8" name="mix" type="integer"/>
+  		<property column="TOTAL_QUANTITY" name="detailTotalQuantity" type="integer"/>
+  		<property column="ITEM_TOTAL_QUANTITY" name="itemTotalQuantity" type="integer"/>
+ 	</class>
+</hibernate-mapping>

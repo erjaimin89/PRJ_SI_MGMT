@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2016-03-26T16:20:51 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="10" bottomMargin="5" uuid="c6a4b58f-8e73-4bf0-a789-6d0356d26a82">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SIMS"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT sims.INVOICE_DETAILS.`TEXT`
+FROM sims.INVOICE_DETAILS
+where  sims.INVOICE_DETAILS.`TYPE`  = 0 and  sims.INVOICE_DETAILS.`ID` = 1
+order by  sims.INVOICE_DETAILS.`ID`]]>
+	</queryString>
+	<field name="TEXT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="TEXT">
+		<groupExpression><![CDATA[$F{TEXT}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94">
+			<rectangle>
+				<reportElement x="0" y="0" width="550" height="27" backcolor="#EBEBEB" uuid="78c918e1-5ba1-4ee1-b613-c0abdbc68484"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="2" width="595" height="25" backcolor="#EAEAEA" uuid="9eb72a63-9601-4a0f-8c43-a379f6b9ca5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="27" width="401" height="28" uuid="47dcb641-7d84-42d8-b2f9-77511f912caa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TEXT}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="99" y="55" width="401" height="39" backcolor="#FFFFFF" uuid="b8cade1f-868e-48fb-bac1-1549fa73d9b3"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["resources/reports/subheader.jasper"]]></subreportExpression>
+			</subreport>
+			<image>
+				<reportElement x="9" y="30" width="90" height="64" uuid="ea4d7368-fbf5-4f86-aae7-45fef989abfb"/>
+				<imageExpression><![CDATA["resources/images/invoice_logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+</jasperReport>

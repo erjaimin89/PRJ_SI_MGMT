@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="hibernate.ProductEntity" table="PRODUCT">
+  		<meta attribute="description">This class is used to save the info about products</meta>
+  		<id column="ID" name="itemId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="ITEM_NAME" name="itemName" type="string"/>
+  		<property column="PARTY_ID" name="partyId" type="long"/>
+  		<property column="PARTY_NAME" name="partyName" type="string"/>
+  		<property column="QUANTITY"  name="quantity" type="integer"/>
+  		<property column="TRANSIT_QUANTITY"  name="transitQuantity" type="integer"/>
+  		<property column="PRODUCTION_QUANTITY"  name="productionQuantity" type="integer"/>
+  		<property column="LABEL" name="itemLabel" type="string"/>
+  		<property column="STYLE" name="itemStyle" type="string"/>
+  		<property column="CONTENTS" name="itemContents" type="string"/>
+  		<property column="WEIGHT" name="itemWeight" type="string"/>
+  		<property column="POLYBAG" name="itemPolyBag" type="string"/>
+  		<property column="BOX" name="itemBox" type="string"/>
+  		<property column="COLORS" name="itemColors" type="string"/>
+  		<property column="CREATED_ON" name="createdOn" type="long"/>
+  		<property column="UPDATED_ON" name="updatedOn" type="long"/>
+  		 <set name="details" cascade="all" lazy="false" sort="natural">
+         <key column="PRODUCT_ID"/>
+         <one-to-many class="hibernate.ProductDetailEntity"/>
+      </set>
+ 	</class>
+	<class name="hibernate.ProductDetailEntity" table="PRODUCT_DETAILS">
+  		<meta attribute="description">
+  			This class is used to save the details about product
+  		</meta>
+   		<id column="ID" name="itemDetailId" type="long">
+  			<generator class="increment"/>
+  		</id>
+  		<property column="NAME" name="name" type="string"/>
+  		<property column="SIZE_1"  name="xsmall" type="integer"/>
+  		<property column="SIZE_2" name="small" type="integer"/>
+  		<property column="SIZE_3" name="medium" type="integer"/>
+  		<property column="SIZE_4"  name="large" type="integer"/>
+  		<property column="SIZE_5" name="xlarge" type="integer"/>
+  		<property column="SIZE_6" name="xxlarge" type="integer"/>
+  		<property column="SIZE_7"  name="xxxlarge" type="integer"/>
+  		<property column="SIZE_8" name="mix" type="integer"/>
+  		<property column="SUB_TOTAL" name="subTotal" type="integer"/>
+  		<property column="RES_SIZE_1"  name="res_xsmall" type="integer"/>
+  		<property column="RES_SIZE_2" name="res_small" type="integer"/>
+  		<property column="RES_SIZE_3" name="res_medium" type="integer"/>
+  		<property column="RES_SIZE_4"  name="res_large" type="integer"/>
+  		<property column="RES_SIZE_5" name="res_xlarge" type="integer"/>
+  		<property column="RES_SIZE_6" name="res_xxlarge" type="integer"/>
+  		<property column="RES_SIZE_7"  name="res_xxxlarge" type="integer"/>
+  		<property column="RES_SIZE_8" name="res_mix" type="integer"/>
+  		<property column="TRANS_SIZE_1"  name="trans_xsmall" type="integer"/>
+  		<property column="TRANS_SIZE_2" name="trans_small" type="integer"/>
+  		<property column="TRANS_SIZE_3" name="trans_medium" type="integer"/>
+  		<property column="TRANS_SIZE_4"  name="trans_large" type="integer"/>
+  		<property column="TRANS_SIZE_5" name="trans_xlarge" type="integer"/>
+  		<property column="TRANS_SIZE_6" name="trans_xxlarge" type="integer"/>
+  		<property column="TRANS_SIZE_7"  name="trans_xxxlarge" type="integer"/>
+  		<property column="TRANS_SIZE_8" name="trans_mix" type="integer"/>
+  		<property column="TRANS_TOTAL" name="total_transit" type="integer"/>
+  		<property column="PROD_SIZE_1"  name="prod_xsmall" type="integer"/>
+  		<property column="PROD_SIZE_2" name="prod_small" type="integer"/>
+  		<property column="PROD_SIZE_3" name="prod_medium" type="integer"/>
+  		<property column="PROD_SIZE_4"  name="prod_large" type="integer"/>
+  		<property column="PROD_SIZE_5" name="prod_xlarge" type="integer"/>
+  		<property column="PROD_SIZE_6" name="prod_xxlarge" type="integer"/>
+  		<property column="PROD_SIZE_7"  name="prod_xxxlarge" type="integer"/>
+  		<property column="PROD_SIZE_8" name="prod_mix" type="integer"/>
+  		<property column="PROD_TOTAL" name="total_production" type="integer"/>
+ 	</class>
+</hibernate-mapping>

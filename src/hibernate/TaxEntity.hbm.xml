@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="hibernate.TaxEntity" table="TAXING_SCHEMES">
+  <meta attribute="description">This class is used to save the info about users</meta>
+  <id column="ID" name="taxId" type="long">
+  	<generator class="increment"/>
+  </id>
+  <property column="TAX_SCHEME_NAME" name="taxSchemeName" type="string"/>
+  <property column="PRIMARY_TAX_NAME" name="primaryTaxName" type="string"/>
+  <property column="PRIMARY_TAX_RATE" name="primaryTaxRate" type="double"/>
+  <property column="SECONDARY_TAX_NAME" name="secondaryTaxName" type="string"/>
+  <property column="SECONDARY_TAX_RATE" name="secondaryTaxRate" type="double"/>
+  <property column="SECONDARY_COMPOUND" name="isSecondaryCompound" type="boolean"/>
+  <property column="CREATED_ON" name="createdOn" type="long"/>
+  <property column="UPDATED_ON" name="updatedOn" type="long"/>
+ </class>
+</hibernate-mapping>

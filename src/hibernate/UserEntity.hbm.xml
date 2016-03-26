@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="hibernate.UserEntity" table="USER">
+  <meta attribute="description">This class is used to save the info about users</meta>
+  <id column="ID" name="userId" type="long">
+  	<generator class="increment"/>
+  </id>
+  <property column="USER_NAME" name="userName" type="string"/>
+  <property column="USER_TYPE" name="type" type="integer"/>
+  <property column="CREATED_ON" name="createdOn" type="long"/>
+ </class>
+</hibernate-mapping>
